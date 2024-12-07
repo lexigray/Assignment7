@@ -1,12 +1,15 @@
 FROM ubuntu
 
+COPY appScript.sh /bin/
 
 RUN apt-get update
 RUN apt-get -y install vim
 RUN apt-get -y install nginx
 
-COPY appScript.sh /bin/
+EXPOSE 80
 
-CMD /bin/appScript.sh
+RUN /bin/appScript.sh 
+
+CMD ["nginx", "-g", "daemon off;"]
 
 
